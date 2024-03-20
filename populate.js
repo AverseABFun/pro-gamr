@@ -1,4 +1,5 @@
 const shell = require('shelljs')
+const fs = require('fs');
 shell.mkdir("gams");
 
 function gitClone(repo) {
@@ -10,6 +11,8 @@ function gitClone(repo) {
 const repos = {
     "https://gitlab.com/3kh0/3kh0-assets.git/": gitClone
 }
+shell.rm("-rf", "gams/*");
 for (var item of Object.keys(repos)) {
     repos[item](item)
 }
+fs.writeFileSync("gams/files.json", JSON.stringify(fs.readdirSync("gams")));
