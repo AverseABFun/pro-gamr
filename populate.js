@@ -1,4 +1,6 @@
 const shell = require('shelljs')
+shell.mkdir("gams");
+
 function gitClone(repo) {
     shell.exec(`git clone ${repo} temp`);
     shell.mv("temp/*", "./gams");
